@@ -1,5 +1,5 @@
 certoraRun contracts/CErc20.sol contracts/Comptroller.sol contracts/governance/Comp.sol \
-    --verify Comptroller:claimCompRules.spec \
+    --verify Comptroller:spec/certora/Comp/claimCompRules.spec \
     --solc solc5.17 \
     --optimistic_loop \
     --link Comptroller:_compAddress=Comp \
