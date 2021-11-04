@@ -1420,6 +1420,22 @@ contract Comptroller is ComptrollerV6Storage, ComptrollerInterface, ComptrollerE
      * @return The address of COMP
      */
     function getCompAddress() public view returns (address) {
-        return 0xc00e94Cb662C3520282E6f5717214004A7f26888;
+        return _compAddress; //0xc00e94Cb662C3520282E6f5717214004A7f26888;
     }
-}
+    address _compAddress;
+
+    function getCompSupplierIndex(address cToken) public returns (uint) {
+        return compSupplyState[cToken].index;
+    }
+    function getCompBorrowState(address cToken) public returns (uint) {
+        return compBorrowState[cToken].index;
+    }
+        function getCompSupplierIndexBlock(address cToken) public returns (uint) {
+        return compSupplyState[cToken].block;
+    }
+    function getCompBorrowStateBlock(address cToken) public returns (uint) {
+        return compBorrowState[cToken].block;
+    }
+    function assumeMarketWithOneCtoken(address cToken) public {
+        require (allMarkets.length == 1  && address(allMarkets[0])==cToken);
+    }
