@@ -1439,3 +1439,4 @@ contract Comptroller is ComptrollerV6Storage, ComptrollerInterface, ComptrollerE
     function assumeMarketWithOneCtoken(address cToken) public {
         require (allMarkets.length == 1  && address(allMarkets[0])==cToken);
     }
+}

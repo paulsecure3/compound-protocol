@@ -1,7 +1,7 @@
 using CERC20 as cToken
 using COMP as comp
 
-method {
+methods {
 	comp.balanceOf(address user) returns uint envfree
 	cToken.borrowBalanceStored(address borrower) returns uint envfree 
 	cToken.balanceOf(address user) returns uint envfree 
@@ -28,7 +28,7 @@ rule zeroGainOnZeroBlocks() {
 No gain or loss of COMP tokens due to front-running. 
 The amount of COMP received at a specific state is the same whether or not another user (possible admin) has performed an operation just before
 */
-rule noGainDuetoOtherCall(method f)
+rule noGainDuetoOtherCall(method f) {
 	env eUSer;
 	env eOther;
 
@@ -53,12 +53,12 @@ rule maxCompReward() {
 	address user;
 	uint compInitialIndex = compInitialIndex();
 	uint256 before = Comp.balanceOf(user);
-	unit256 supply = cToken.balanceOf(supplier)
-	uint256 borrow = cToken.borrowBalanceStored(user)
+	uint256 supply = cToken.balanceOf(supplier);
+	uint256 borrow = cToken.borrowBalanceStored(user);
 	claimComp(e, user);
 	uint256 after = Comp.balanceOf(user);
 	mathint maxSupplyGain = supply * ( getCompSupplierIndex(cToken) - compInitialIndex );
 	mathint maxBorrowGain = borrow * ( getCompBorrowState(cToken)  - compInitialIndex );
 
-	assert after <= before + maxSupplyGain + maxBorrowGain	
+	assert after <= before + maxSupplyGain + maxBorrowGain;
 }
