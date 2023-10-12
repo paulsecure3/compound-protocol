@@ -1,5 +1,5 @@
-pragma solidity ^0.5.16;
-pragma experimental ABIEncoderV2;
+// SPDX-License-Identifier: BSD-3-Clause
+pragma solidity ^0.8.10;
 
 import "../CErc20.sol";
 import "../CToken.sol";
@@ -44,7 +44,7 @@ interface GovernorBravoInterface {
     function getReceipt(uint proposalId, address voter) external view returns (Receipt memory);
 }
 
-contract CompoundLens {
+contract LoansharkLens {
     struct CTokenMetadata {
         address cToken;
         uint exchangeRateCurrent;
